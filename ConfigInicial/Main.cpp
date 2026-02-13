@@ -1,7 +1,7 @@
 // Medina Villa Samuel
 // 320249538
-// Previo#2
-// Fecha de entrega: 9 de febrero de 2026
+// Practica#1
+// Fecha de entrega: 6 de febrero de 2026
 
 #include<iostream>
 

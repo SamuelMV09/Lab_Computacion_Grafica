@@ -19,15 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Main_Dibujo2D.cpp" />
-    <ClCompile Include="Main.cpp" />
+    <ClInclude Include="Shader.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Shader.h" />
+    <None Include="Shader\core.frag" />
+    <None Include="Shader\core.vs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Shader\core.frag" />
-    <None Include="..\Shader\core.vs" />
+    <ClCompile Include="Main_Dibujo2D.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

@@ -14,28 +14,25 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="Archivos de origen\Shader">
-      <UniqueIdentifier>{29195e8c-6386-41c9-8d8a-e604a6c0832c}</UniqueIdentifier>
+      <UniqueIdentifier>{b7cd6567-900c-4c0f-8ff3-b5aa387b9a96}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Main_Dibujo2D.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Main.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\Shader.h">
+    <ClInclude Include="Shader.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Shader\core.frag">
+    <None Include="Shader\core.frag">
       <Filter>Archivos de origen\Shader</Filter>
     </None>
-    <None Include="..\Shader\core.vs">
+    <None Include="Shader\core.vs">
       <Filter>Archivos de origen\Shader</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main_Dibujo2D.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
