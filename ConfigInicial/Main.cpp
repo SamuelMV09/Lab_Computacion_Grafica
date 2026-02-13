@@ -1,3 +1,8 @@
+// Medina Villa Samuel
+// 320249538
+// Previo#2
+// Fecha de entrega: 9 de febrero de 2026
+
 #include<iostream>
 
 //#define GLEW_STATIC
