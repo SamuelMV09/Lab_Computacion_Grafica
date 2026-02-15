@@ -112,15 +112,20 @@ int main() {
 
 			//Cola
 
-			-0.25f,  -0.2f,  0.0f,          1.0f, 1.0f, 1.0f,
+			-0.25f,  -0.2f,  0.0f,          1.0f, 1.0f, 1.0f, //30
 			-0.38f,  -0.14f,  0.0f,          1.0f, 1.0f, 1.0f,
 			-0.5f,  -0.19f,  0.0f,          1.0f, 1.0f, 1.0f,
 			-0.45f,  -0.3f,  0.0f,          1.0f, 1.0f, 1.0f,
 			-0.25f,  -0.38f,  0.0f,          1.0f, 1.0f, 1.0f,
 
-			//Lineas para conectar 
+			//Vertices para conectar 
 
 			0.41f,  -0.31f,  0.0f,          1.0f, 1.0f, 1.0f,
+			0.5f,  0.35f,  0.0f,          1.0f, 1.0f, 1.0f,
+			-0.32f,  0.62f,  0.0f,          1.0f, 1.0f, 1.0f, //37
+			-0.03f,  0.8f,  0.0f,          1.0f, 1.0f, 1.0f,
+			0.1f,  0.63f,  0.0f,          1.0f, 1.0f, 1.0f,
+			
 
 			
 	};
@@ -144,6 +149,18 @@ int main() {
 		25, 26,
 		27, 28,
 		28, 29,
+		31, 33,
+		13, 15,
+		13, 11,
+		11, 36,
+		36, 9, 
+		8, 36,
+		8, 9,
+		36, 1, 
+		37, 4,
+		37, 6,
+		38, 2,
+		39, 38,
 
 	};
 
@@ -198,9 +215,9 @@ int main() {
 
 
 		glPointSize(7);
-		//glDrawArrays(GL_POINTS,20,1);
+		//glDrawArrays(GL_POINTS,39,1);
 
-		//glDrawArrays(GL_LINES,0,2);
+		//glDrawArrays(GL_LINES,1,1);
 
 
 
@@ -222,7 +239,9 @@ int main() {
 
 		//glDrawArrays(GL_TRIANGLES, 15, 3);
 
-		glDrawElements(GL_LINES, 40,GL_UNSIGNED_INT,0);
+
+		//Funcion para las orejas, la cabeza y las patas 
+		glDrawElements(GL_LINES, 70,GL_UNSIGNED_INT,0);
 
 
 
