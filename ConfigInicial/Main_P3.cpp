@@ -226,11 +226,14 @@ int main() {
 		glm::mat4 model=glm::mat4(1);
 		glm::mat4 view=glm::mat4(1);
 	
-		view = glm::translate(view, glm::vec3(3.0f,-2.0f,-20.0f));
+		view = glm::translate(view, glm::vec3(3.0f,-2.0f,-48.0f));
 
-		model = glm::translate(model, glm::vec3(0.0f, -4.7f, 1.0f));
-		model = glm::rotate( model, 0.5f, glm::vec3( 1.0f, 7.0f, 0.0f ) ); // use to compare orthographic and perspective projection
-		model = glm::scale(model, glm::vec3(5.0f, 4.0f, 4.0f));
+
+
+		//Primer cubo
+		model = glm::translate(model, glm::vec3(0.0f, -15.0f, 1.0f));
+		model = glm::rotate( model, 0.5f, glm::vec3( 1.0f, 5.0f, 0.0f ) ); // use to compare orthographic and perspective projection
+		model = glm::scale(model, glm::vec3(15.0f, 3.0f, 10.0f));
 		//view = glm::translate( view, glm::vec3( screenWidth / 2, screenHeight / 5,-800.0f ) ); // use with orthographic projection
 		
 		GLint modelLoc = glGetUniformLocation(ourShader.Program, "model");
@@ -245,21 +248,41 @@ int main() {
 		glBindVertexArray(VAO);
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 
-		// Otro cubo
+		// Segundo cubo
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(0.0f, -3.0f, -1.0f));
-		model = glm::rotate(model, 0.5f, glm::vec3(1.0f, 7.0f, 0.0f)); // use to compare orthographic and perspective projection
-		model = glm::scale(model, glm::vec3(4.7f, 3.8f, 3.8f));
+		model = glm::translate(model, glm::vec3(4.3f, -10.61f, -6.7f));
+
+		model = glm::rotate(model, 0.4f, glm::vec3(1.0f, 5.0f, 0.0f));
+
+		model = glm::rotate(model, 3.14159f, glm::vec3(0.0f, 1.0f, 0.0f));
+
+		model = glm::scale(model, glm::vec3(11.0f, 4.5f, 8.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 
+
+		//Tercer Cubp
+		
+		model = glm::mat4(1);
+		
+		model = glm::translate(model, glm::vec3(7.452f, -10.054f, -11.597f));
+
+		model = glm::rotate(model, 0.5f, glm::vec3(1.0f, 5.0f, 0.0f));
+		model = glm::rotate(model, 1.57f, glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(8.0f, 6.0f, 8.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+
+
+
+
+
+
 		glBindVertexArray(0);
 
+		
 
-
-		
-		
-		
 
 		// Swap the screen buffers
 		glfwSwapBuffers(window);
