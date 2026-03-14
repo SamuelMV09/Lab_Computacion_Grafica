@@ -97,6 +97,7 @@ int main()
     // OpenGL options
     glEnable(GL_DEPTH_TEST);
 
+
     // Setup and compile our shaders
     Shader shader("Shader/modelLoading.vs", "Shader/modelLoading.frag");
 
@@ -106,9 +107,32 @@ int main()
     // Modelo del granero
     Model granero((char*)"Models/Granero/Granero.obj");
 
+    //Modelo del tractor
+    Model tractor((char*)"Models/tractor/tractor.obj");
+
+    //Modelo de la nubes
+    Model cloud((char*)"Models/clouds/clouds.obj");
+
+    Model cloud2((char*)"Models/clouds2/clouds2.obj");
+
+    //Modelo del burro
+    Model burro((char*)"Models/burro/burro.obj");
+
+    //Modelo del corral
+    Model corral((char*)"Models/corral/corral.obj");
+
+
+    //Modelo de las plantas
+    Model planta((char*)"Models/plantas/planta.obj");
+    Model planta2((char*)"Models/plantas/planta2.obj");
+    Model planta3((char*)"Models/plantas/planta3.obj");
+
+    //Modelo de la carretila
+    Model carretilla((char*)"Models/carretilla/carretilla.obj");
+
     glm::mat4 projection = glm::perspective(camera.GetZoom(), (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT, 0.1f, 100.0f);
 
-
+    
 
     // Game loop
     while (!glfwWindowShouldClose(window))
@@ -143,8 +167,63 @@ int main()
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(modelGranero));
         granero.Draw(shader);
 
+
+        //Dibujo del tractor
+        glm::mat4 modelTractor(1.0f);
+        modelTractor = glm::translate(modelTractor, glm::vec3(-1.3f, 6.0f, -11.0f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, &modelTractor[0][0]);
+        tractor.Draw(shader);
         
 
+        //Dibujo de las nubes 
+
+        glm::mat4 modelCloud(1.0f);
+        modelCloud = glm::translate(modelCloud, glm::vec3(0.0f, -0.3f, -7.0f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(modelCloud));
+        cloud.Draw(shader);
+
+
+        glm::mat4 modelCloud2(1.0f);
+        modelCloud2 = glm::translate(modelCloud2, glm::vec3(0.0f, -0.3f, -7.0f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(modelCloud2));
+        cloud2.Draw(shader);
+
+
+        //Dibujo del burro
+        glm::mat4 modelburro(1.0f);
+        modelburro = glm::translate(modelburro, glm::vec3(0.0f, -0.3f, -7.0f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(modelburro));
+        burro.Draw(shader);
+
+        //Dibujo del corral 
+
+        glm::mat4 modelcorral(1.0f);
+        modelcorral = glm::translate(modelcorral, glm::vec3(0.0f, -0.3f, -7.0f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(modelcorral));
+        corral.Draw(shader);
+
+        //Dibujo de las plantas 
+        glm::mat4 modelPlanta1(1.0f);
+        modelPlanta1 = glm::translate(modelPlanta1, glm::vec3(0.0f, -0.3f, -7.0f)); 
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(modelPlanta1));
+        planta.Draw(shader);
+
+        glm::mat4 modelPlanta2(1.0f);
+        modelPlanta2 = glm::translate(modelPlanta2, glm::vec3(0.0f, -0.3f, -7.0f)); 
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(modelPlanta2));
+        planta2.Draw(shader);
+
+        glm::mat4 modelPlanta3(1.0f);
+        modelPlanta3 = glm::translate(modelPlanta3, glm::vec3(0.0f, -0.3f, -7.0f)); 
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(modelPlanta3));
+        planta3.Draw(shader);
+
+
+        //Dibujo de la carretilla
+        glm::mat4 modelcarretilla(1.0f);
+        modelcarretilla = glm::translate(modelcarretilla, glm::vec3(0.0f, -0.28f, -7.0f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(modelcarretilla));
+        carretilla.Draw(shader);
 
         // Swap the buffers
         glfwSwapBuffers(window);
