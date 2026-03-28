@@ -2,7 +2,7 @@
 // Medina Villa Samuel
 // 320249538
 // Practica#8
-// Fecha de entrega: 22 de marzo de 2026
+// Fecha de entrega: 28 de marzo de 2026
 
 
 
@@ -249,7 +249,7 @@ int main()
         // Posición rotatoria para el Sol 
         float luzX = cos(anguloOrbita) * radioOrbita;
         float luzY = sin(anguloOrbita) * radioOrbita;
-        float luzZ = -7.0f; // 
+        float luzZ = -8.0f; // 
 
         // Posición opuesta para la Luna 
         float lunaX = cos(anguloOrbita + 3.14159f) * radioOrbita;
@@ -263,36 +263,37 @@ int main()
         glUniform3f(glGetUniformLocation(lightingShader.Program, "viewPos"), camera.GetPosition().x, camera.GetPosition().y, camera.GetPosition().z);
 
        
+        
         // logica de la iluminacion
         if (esDeDia)
         {
-            // CIELO DE DÍA
-            glClearColor(0.5f, 0.8f, 0.9f, 1.0f);
+            // CIELO DE DÍA 
+            glClearColor(0.4f, 0.7f, 0.9f, 1.0f);
 
-            // Luz 1 (sol) calida
-            glUniform3f(glGetUniformLocation(lightingShader.Program, "light.ambient"), 0.6f, 0.5f, 0.2f);
-            glUniform3f(glGetUniformLocation(lightingShader.Program, "light.diffuse"), 1.0f, 0.8f, 0.4f); 
+            // luz 1 (sol): luz calida
+            glUniform3f(glGetUniformLocation(lightingShader.Program, "light.ambient"), 0.5f, 0.4f, 0.2f);
+            glUniform3f(glGetUniformLocation(lightingShader.Program, "light.diffuse"), 1.0f, 0.85f, 0.3f); 
             glUniform3f(glGetUniformLocation(lightingShader.Program, "light.specular"), 1.0f, 0.9f, 0.5f);
 
-            // Luz 2 (luna) apagada 
+            // luz 2 (luna): Apagada 
             glUniform3f(glGetUniformLocation(lightingShader.Program, "light2.ambient"), 0.0f, 0.0f, 0.0f);
             glUniform3f(glGetUniformLocation(lightingShader.Program, "light2.diffuse"), 0.0f, 0.0f, 0.0f);
             glUniform3f(glGetUniformLocation(lightingShader.Program, "light2.specular"), 0.0f, 0.0f, 0.0f);
         }
         else
         {
-            // CIELO DE NOCHE
-            glClearColor(0.05f, 0.05f, 0.1f, 1.0f);
+            // CIELO DE NOCHE 
+            glClearColor(0.02f, 0.02f, 0.08f, 1.0f);
 
-            // Luz 1 (sol) apagada 
+            // luz 1 (sol): Apagada 
             glUniform3f(glGetUniformLocation(lightingShader.Program, "light.ambient"), 0.0f, 0.0f, 0.0f);
             glUniform3f(glGetUniformLocation(lightingShader.Program, "light.diffuse"), 0.0f, 0.0f, 0.0f);
             glUniform3f(glGetUniformLocation(lightingShader.Program, "light.specular"), 0.0f, 0.0f, 0.0f);
 
-            // Luz 2 (luna) azul intensa
-            glUniform3f(glGetUniformLocation(lightingShader.Program, "light2.ambient"), 0.1f, 0.2f, 0.4f);
-            glUniform3f(glGetUniformLocation(lightingShader.Program, "light2.diffuse"), 0.2f, 0.4f, 1.0f); 
-            glUniform3f(glGetUniformLocation(lightingShader.Program, "light2.specular"), 0.5f, 0.7f, 1.0f);
+            // luz 2 (luna): luz blanca
+            glUniform3f(glGetUniformLocation(lightingShader.Program, "light2.ambient"), 0.1f, 0.15f, 0.25f);
+            glUniform3f(glGetUniformLocation(lightingShader.Program, "light2.diffuse"), 0.5f, 0.6f, 0.9f); 
+            glUniform3f(glGetUniformLocation(lightingShader.Program, "light2.specular"), 0.7f, 0.8f, 1.0f);
         }
 
 
@@ -394,26 +395,24 @@ int main()
 
        // dibujos del sol y la luna
 
+
+        
+        shader.Use();
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "view"), 1, GL_FALSE, glm::value_ptr(view));
+
         if (esDeDia)
         {
-            // 
-            lampshader.Use();
-            glUniformMatrix4fv(glGetUniformLocation(lampshader.Program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
-            glUniformMatrix4fv(glGetUniformLocation(lampshader.Program, "view"), 1, GL_FALSE, glm::value_ptr(view));
-
+            // sol
             glm::mat4 modelSol = glm::mat4(1.0f);
             modelSol = glm::translate(modelSol, glm::vec3(luzX, luzY, luzZ));
-            modelSol = glm::scale(modelSol, glm::vec3(0.5f));
-            glUniformMatrix4fv(glGetUniformLocation(lampshader.Program, "model"), 1, GL_FALSE, glm::value_ptr(modelSol));
-            sol.Draw(lampshader);
+            modelSol = glm::scale(modelSol, glm::vec3(0.002f)); 
+            glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(modelSol));
+            sol.Draw(shader);
         }
         else
         {
-            
-            shader.Use();
-            glUniformMatrix4fv(glGetUniformLocation(shader.Program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
-            glUniformMatrix4fv(glGetUniformLocation(shader.Program, "view"), 1, GL_FALSE, glm::value_ptr(view));
-
+            // luna
             glm::mat4 modelLuz2 = glm::mat4(1.0f);
             modelLuz2 = glm::translate(modelLuz2, glm::vec3(lunaX, lunaY, luzZ));
             modelLuz2 = glm::scale(modelLuz2, glm::vec3(0.5f));
@@ -421,7 +420,9 @@ int main()
             luna.Draw(shader);
         }
 
-        
+      
+
+ 
 
         glBindVertexArray(0);
 
